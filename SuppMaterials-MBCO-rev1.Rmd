@@ -1,0 +1,297 @@
+---
+title: "Supplemental Materials"
+documentclass: apa
+fontsize: 11pt
+output:
+  word_document: default
+  html_document:
+    df_print: paged
+  pdf_document: null
+citation_package: apacite
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  strip.white = TRUE,
+  out.width = 80
+  )
+  library(OpenMx)
+  library(RMediation)
+  library(tidyverse)
+  mxOption(NULL, "Default optimizer", "NPSOL")
+```
+
+In this section we discuss in detail the steps required to analyze our empirical example and re-produce the results. You can run the code below to reproduce the results discussed the empirical example section. The R Markdown file that contains all the code as well as the data set for the empirical example is available from the following link ( <http://gofile.me/3JPpt/qemrtp7Sp> ). When using the data, please cite the relevant study by MacKinnon et al. (2018).
+
+```{r read_data}
+memory_df <- read.csv("memory_study.csv")
+memory_df <-
+memory_df %>% rename(repetition = R,
+imagery = M,
+recall = Y) %>%
+mutate(x = factor(X, 0:1, labels = c("repetition", "imagery")))
+```
+
+## Research Question 1
+
+For this research question, we were interested in testing whether the indirect effect through Imagery is significant. We use the single-mediator  model in Figure 1 to answer this question. We follow the three steps outlined in the manuscript to compute the MBCO test and fit indices.
+
+### Step 1 
+We first specify the alternative model, which is the single mediator model, in OpenMx. The following R script specifies the alternative model.
+
+```{r single_med_alt}
+endVar <- c('imagery', 'recall') # name the endogenous variables
+maniVar <-
+  c('X', 'imagery', 'recall') # name the osbserved variables
+
+single_med <- mxModel(
+  "Model 1",
+  type = "RAM",
+  manifestVars = maniVar,
+  #specify the manifest (oberved) variables
+  mxPath(
+    from = "X",
+    to = endVar,
+    arrows = 1,
+    free = TRUE,
+    values = .2,
+    labels = c("b1", "b3") # specify the path from X to the M (Imagery) and Y (recall)
+  ),
+  mxPath(
+    from = 'imagery',
+    to = 'recall',
+    arrows = 1,
+    free = TRUE,
+    values = .2,
+    labels = "b2" # Specify the path from M to Y
+  ),
+  mxPath(
+    from = maniVar,
+    arrows = 2,
+    free = TRUE,
+    values = .8,
+    labels = c("s2x", "s2em", "s2ey") # Specify (residial) variances for the observed variables
+  ),
+  mxPath(
+    from = "one",
+    to = endVar,
+    arrows = 1,
+    free = TRUE,
+    values = .1, 
+    labels = c("int1","int2") # Specify the intercepts for the endogenous variables
+  ),
+  mxAlgebra(b1 * b2, name = "ind"),
+  # define the indirect effect and call it ind
+  mxData(observed = memory_df, type = "raw") # specify the data set for analysis
+)
+single_med <- mxRun(single_med) # run the single mediator null model
+stat_Model1 <- summary(single_med) # saving the results
+stat_Model1 # rinting resuslts of the full model
+```
+
+### Step 2
+We then specify the null model, which is the single mediator model with the constraint $\beta_1 \beta_2 =0$. It should be noted that in OpenMx, we do not need specify the null model from scratch. We create the null model from the alternative model by adding *update* $\beta_1 \beta_2 =0$ as a non-linear constraint as follows:
+
+```{r single_med_null}
+## The  Model is obtained by contraining indirect effect: b1*b2 to zero
+single_med_null <- mxModel(model = single_med,
+                           name = "Model 2",
+                           mxConstraint(ind == 0, name = "b1b2_equals_0")) # non-linear constraint
+single_med_null <- mxRun(single_med_null)  # Run the model
+stat_1M_null <-
+  summary(single_med_null) # saving summary statatistics
+stat_1M_null 
+```
+
+###Step 3
+The third is to compute MBCO test likelihood ratio test by comparing the likelihood between the two models, or more precisely, by computing the difference in twice log-likelihood between the two models. We can use the function `code anova` to compute the likelihood ratio test as follows:
+
+```{r mbco_1M}
+anova(single_med_null, single_med) 
+```
+
+The first row of the above table show the results for the single mediator (alternative) model. As can be seen, $-2LL$ = `r -2*round(logLik(single_med),3)`, $df=1099$, AIC = `r round(AIC(single_med),3)`. We can also use the following code to compute $LL$, AIC, and BIC:
+
+```{r stats_1M}
+logLik(single_med)  # computes LL for the alternative model
+AIC(single_med) # computes AIC
+BIC(single_med) # computes BIC
+```
+The second of the of the above table shows the comparison between the two models, including the MBCO chi-squared test in the column "diffLL"= $-2\widehat{LL}_{null} + 2 \widehat{LL}_{alternative}= 4378.270 - 4305.727 = 72.543$, and the $df$ for the chi-squared test is in the column "diffdf"=1, and the $p$-value = 1.64 E-17.
+
+## Monte Carlo CI
+
+Below we used the RMediation package to compute the 95\% Monte Carlo CI for the indirect effect estimate for single-mediator model:
+
+```{r MC_ci_1M}
+Mu <- coef(single_med) # path coefficient estimates
+Sigma <- vcov(single_med) #covariance matrix of the parameter estimates
+## MC CI for indirect effect a1*b1
+mc_ci1 <- ci(mu = Mu,
+Sigma = Sigma,
+quant = ~ b1 * b2)
+mc_ci <- unlist(mc_ci1)
+cat(" Monte Carlo CI for b1*b2:\n")
+knitr::kable(mc_ci)
+```
+
+## Research Question 2
+
+The second question was, does the experiment increase use of repetition to improve memory over and above the indirect effect through imagery?  
+
+### Step 1
+We first estimate the two-mediator model in Figure 2. In this model, the two indirect effects associated with Imagery and Repetition are freely estimated. 
+
+```{r two_med_alt}
+endVar <- c('imagery', 'repetition', 'recall')
+maniVar <- c('X', 'imagery', 'repetition', 'recall')
+two_med <- mxModel(
+  "Model 3",
+  type = "RAM",
+  manifestVars = maniVar,
+  mxPath(
+    from = "X",
+    to = endVar,
+    arrows = 1,
+    free = TRUE,
+    values = .2,
+    labels = c("b1", "b3", "b5")
+  ),
+  mxPath(
+    from = 'repetition',
+    to = 'recall',
+    arrows = 1,
+    free = TRUE,
+    values = .2,
+    labels = 'b4'
+  ),
+  mxPath(
+    from = 'imagery',
+    to = 'recall',
+    arrows = 1,
+    free = TRUE,
+    values = .2,
+    labels = "b2"
+  ),
+  mxPath(
+    from = maniVar,
+    arrows = 2,
+    free = TRUE,
+    values = .8,
+    labels = c("s2x", "s2em1", "s2em2", "s2ey")
+  ),
+  mxPath(
+    from = 'imagery',
+    to = 'repetition',
+    arrows = 2,
+    free = TRUE,
+    values = .2,
+    labels = "cov_m1m2"
+  ),
+  mxPath(
+    from = "one",
+    to = endVar,
+    arrows = 1,
+    free = TRUE,
+    values = .1,
+    labels = c("int1", "int2", "int3")
+  ),
+  mxAlgebra(b1 * b2, name = "ind1"),
+  mxAlgebra(b3 * b4, name = "ind2"),
+  mxData(observed = memory_df, type = "raw")
+)
+
+two_med <- mxTryHard(two_med) # run the single mediator null model
+stat_Model3 <- summary(two_med) # saving the results
+stat_Model3 # rinting resuslts of the full model
+
+```
+
+### Step 2
+
+Next, we fit the null corresponding to the null hypothesis: $H_0: \beta_3 \, \beta_4 =0$.  Then, we fit the null model by fixing the mediation chain through Repetition to zero, $\beta_3 \, \beta_4 =0$. 
+```{r}
+two_med_null <- mxModel(model = two_med,
+                        name = "Model 4",
+                        mxConstraint(ind2 == 0, name = "b3b4_equals_0"))
+two_med_null <- mxRun(two_med_null)
+stat_Model4 <- summary(two_med_null) # saving the results
+stat_Model4 # printing resuslts of the full model
+```
+
+### Step 3
+Finally, we compare the two models and compute the MBCO test. 
+
+```{r}
+anova(two_med_null, two_med) 
+```
+
+As mentioned previously, the first row of the above table show the results for the two-mediator (alternative) model. For the alternative mode, $-2 \widehat{LL}$ = `r -2*round(logLik(two_med),3)`, $df=1463$, and AIC = `r round(AIC(two_med),3)`. From the second row, we obtain the $-2LL$ = `r -2*round(logLik(two_med_null),3)`, df = 1464, and AIC = `r round(AIC(two_med_null),3)`. From the second row, we can also obtain the MBCO chi-squared test from the column "diffLL", $\chi^2(1)= 0.083$ and $p=.77$.
+
+## Monte Carlo CI
+
+Below we used the RMediation package to compute the 95\% Monte Carlo CI for the indirect effect through Repetition for the two-mediator model:
+
+```{r MC_ci_2M}
+Mu <- coef(two_med) # path coefficient estimates
+Sigma <- vcov(two_med) #covariance matrix of the parameter estimates
+## MC CI for indirect effect a1*b1
+mc_ci2 <- ci(mu = Mu,
+             Sigma = Sigma,
+             quant = ~ b3 * b4)
+mc_ci <- unlist(mc_ci2)
+cat(" Monte Carlo CI for b3*b4:\n")
+knitr::kable(mc_ci)
+```
+
+# Research Question 3
+
+For the third hypothesis, we were interested in comparing the sizes of the two indirect effects associated with Imagery and Repetition, respectively. 
+
+## Step 1
+The full model for this research question is the same as the full model in Question 2. Thus, we use the same statistics for the full model in Question 2, which is a two-mediator model.
+
+## Step 2
+To specify the null model, we first state the null hypothesis as follows $H_0: \beta_1 \beta_2 - \beta_3 \beta_4 =0$. To test this hypothesis, the null model is a two-mediator model in which we constrained the contrast of the two indirect effects to zero. Next, we estimate the null model as follows. 
+
+
+```{r contrast_model}
+## two-mediator model with the constrast fixed at zero
+two_med_contrast<- mxModel(model = two_med,
+name = "Model 5",
+mxConstraint(ind1==ind2, name = "ind1_eq_ind2")
+)
+two_med_contrast <- mxRun(two_med_contrast) # fitting the model
+stat_Model5 <- summary(two_med_contrast) #saving the results
+stat_Model5 ## prining the summary results
+```
+
+## Step 3
+
+Finally, we compare the two models and compute the MBCO test. 
+
+```{r}
+anova(two_med_contrast,two_med) 
+```
+As mentioned previously, the first row of the above table show the results for the two-mediator (full model) model. For the alternative mode, $-2 \widehat{LL}$ = `r -2*round(logLik(two_med),3)`, $df=1463$, and AIC = `r round(AIC(two_med),3)`. From the second row, we obtain the $-2LL$ = `r -2*round(logLik(two_med_contrast),3)`, df = 1464, and AIC = `r round(AIC(two_med_contrast),3)`. From the second row, we can also obtain the MBCO chi-squared test, which is the difference in $-2 \widehat{LL}$ between the two models, resulting in $\chi^2(1)=25.828$, and $p<.0001$. 
+
+## Monte Carlo CI
+
+To obtain the 95\% Monte Carlo CI for the indirect effect through Repetition for the contrast of the two indirect effects, we use the RMediation mode to compute the CI for the contrast.  
+
+```{r MC_ci_const}
+Mu <- coef(two_med) # path coefficient estimates
+Sigma <- vcov(two_med) #covariance matrix of the parameter estimates
+mc_ci_con <- ci(mu = Mu,
+Sigma = Sigma,
+quant = ~ b1 * b2 - b3 * b4)
+mc_ci_con <- unlist(mc_ci_con)
+cat(" Monte Carlo CI for Contrast:\n")
+knitr::kable(mc_ci_con, digits = 2)
+
+```
+
+
+Using the full model estimates, the 95\% Monte Carlo CI for the contrast is [1.36, 11]. The result indicates that the indirect effect through Imagery is larger than the indirect effect through Repetition by $\hat{\beta}_1 \hat{\beta}_2$ - $\hat{\beta}_3 \hat{\beta}_4$ = 2.22 (SE = 0.44) words, 95\% Monte Carlo CI = [1.36 , 3.11]. Comparing the fit indices between the null model (AIC = 5926.51 and BIC = 5977.35 ) and the full model (AIC = 5900.69 and BIC = 5951.53) also confirms the conclusion that the two-mediator model (Model 4) has a better fit than the two-mediator model with the contrast fixed at zero (Model 5). 
