@@ -1,0 +1,32 @@
+digraph G {
+
+	splines="TRUE";
+	# Latents
+
+	# Manifests
+	X [shape = square];
+	imagery [shape = square];
+	recall [shape = square];
+
+	#Variances/residuals
+	X_var [label="0.509", shape = plaintext];
+	imagery_var [label="5.427", shape = plaintext];
+	recall_var [label="8.482", shape = plaintext];
+
+
+	# Single arrow paths
+	X -> imagery [label="3.64"];
+	X -> recall [label="0.045"];
+	imagery -> recall [label="0.583"];
+
+	# Covariances & residuals
+	X_var -> X;
+	imagery_var -> imagery;
+	recall_var -> recall;
+
+	{rank=min; };
+	{rank=same; X imagery recall};
+	{rank=max; X_var imagery_var recall_var};
+
+
+}

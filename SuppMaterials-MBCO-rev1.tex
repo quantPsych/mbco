@@ -1,0 +1,1517 @@
+\documentclass[11pt,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Supplemental Materials},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Supplemental Materials}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{}
+    \preauthor{}\postauthor{}
+    \date{}
+    \predate{}\postdate{}
+  
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\NormalTok{opts_chunk}\OperatorTok{$}\KeywordTok{set}\NormalTok{(}
+  \DataTypeTok{echo =} \OtherTok{TRUE}\NormalTok{,}
+  \DataTypeTok{message =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{strip.white =} \OtherTok{TRUE}
+\NormalTok{)}
+\KeywordTok{library}\NormalTok{(OpenMx)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## To take full advantage of multiple cores, use:
+##   mxOption(key='Number of Threads', value=parallel::detectCores()) #now
+##   Sys.setenv(OMP_NUM_THREADS=parallel::detectCores()) #before library(OpenMx)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(RMediation)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: MASS
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: lavaan
+\end{verbatim}
+
+\begin{verbatim}
+## This is lavaan 0.6-5
+\end{verbatim}
+
+\begin{verbatim}
+## lavaan is BETA software! Please report any bugs.
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'lavaan'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:OpenMx':
+## 
+##     vech
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: e1071
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages -------------------------------------------- tidyverse 1.2.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.2.1     v purrr   0.3.2
+## v tibble  2.1.3     v dplyr   0.8.3
+## v tidyr   1.0.0     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.4.0
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ----------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## x dplyr::select() masks MASS::select()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(umx)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## For an overview type '?umx'
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'umx'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:stats':
+## 
+##     loadings
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(car)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: carData
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'car'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     recode
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:purrr':
+## 
+##     some
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggResidpanel)}
+\KeywordTok{library}\NormalTok{(DiagrammeR)}
+\KeywordTok{mxOption}\NormalTok{(}\OtherTok{NULL}\NormalTok{, }\StringTok{"Default optimizer"}\NormalTok{, }\StringTok{"NPSOL"}\NormalTok{)}
+\KeywordTok{source}\NormalTok{(}\StringTok{"rsq.R"}\NormalTok{) }\CommentTok{# function to compute R2 for endogenous variables}
+\end{Highlighting}
+\end{Shaded}
+
+In this section, we discuss in detail the steps required to analyze our
+empirical example and reproduce the results. You can run the code below
+to reproduce the results discussed in the empirical example section. The
+R Markdown file that contains all the code as well as the data set for
+the empirical example is available from a GitHub repository
+{[}\url{https://quantpsych.github.io/mbco/}{]}. When using the data set
+in this example, please cite the relevant study by MacKinnon, Valente,
+and Wurpts (2018).
+
+Here are the packages required to reproduce the results in this
+document:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{OpenMx}: To exactly replicate our results, you need to install
+  the OpenMx version with the \texttt{"NPSOL"} optimizer. You may use
+  other optimizers available in \texttt{OpenMx}, but the results might
+  differ from the ones presented in this document.
+\item
+  \texttt{RMediation}: This package produces confidence intervals for a
+  general function of indirect effects using various methods, including
+  the Monte Carlo method.
+\item
+  \texttt{tidyverse}: A set of packages including the \texttt{dplyr}
+  package used to facilitate working with simple and complex data sets
+  in \texttt{R}.
+\item
+  \texttt{car} and \texttt{ggResidpanel}: We used these packages to
+  check the model assumptions of the regression equations used in
+  mediation analysis.
+\item
+  \texttt{umx} and \texttt{DiagrammeR}: We used these packages to
+  generate figues from the fitted \texttt{OpenMx} model.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{memory_df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"memory_study.csv"}\NormalTok{)}
+\NormalTok{memory_df <-}
+\NormalTok{memory_df }\OperatorTok{%>%}\StringTok{ }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{repetition =}\NormalTok{ R,}
+\DataTypeTok{imagery =}\NormalTok{ M,}
+\DataTypeTok{recall =}\NormalTok{ Y) }\OperatorTok{%>%}
+\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{factor}\NormalTok{(X, }\DecValTok{0}\OperatorTok{:}\DecValTok{1}\NormalTok{, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"repetition"}\NormalTok{, }\StringTok{"imagery"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+We first gets a glimpse of the data set and it structure using the
+\texttt{glimpse} function from the \texttt{dplyr} package:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glimpse}\NormalTok{(memory_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Observations: 369
+## Variables: 7
+## $ study      <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+## $ X          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+## $ repetition <int> 1, 1, 1, 3, 7, 2, 1, 7, 3, 6, 6, 9, 3, 1, 4, 4, 3, ...
+## $ recall     <int> 9, 14, 17, 8, 10, 10, 8, 12, 12, 15, 7, 10, 8, 9, 1...
+## $ imagery    <int> 6, 8, 9, 7, 7, 6, 3, 6, 7, 7, 8, 8, 5, 5, 8, 9, 4, ...
+## $ XM         <int> 6, 8, 9, 7, 7, 6, 3, 6, 7, 7, 8, 8, 5, 5, 8, 9, 4, ...
+## $ x          <fct> imagery, imagery, imagery, imagery, imagery, imager...
+\end{verbatim}
+
+\hypertarget{research-question-1-does-the-instruction-to-create-mental-images-of-words-increase-use-of-mental-imagery-that-then-increases-the-number-of-words-recalled}{%
+\subsection{Research Question 1: Does the Instruction to Create Mental
+Images of Words Increase Use of Mental Imagery that, then, Increases the
+Number of Words
+Recalled?}\label{research-question-1-does-the-instruction-to-create-mental-images-of-words-increase-use-of-mental-imagery-that-then-increases-the-number-of-words-recalled}}
+
+For this research question, we were interested in testing whether the
+indirect effect of Instruction of Recall through Imagery is different
+from zero. We used the single-mediator model (Figure 1) to answer this
+question. We followed the three steps outlined in the manuscript to
+implement the MBCO procedure. We also briefly introduced the key parts
+of \texttt{OpenMx} (Boker et al. 2011; Neale et al. 2016) code to
+implement the MBCO procedure in \texttt{R}.
+
+\hypertarget{step-1}{%
+\subsubsection{Step 1}\label{step-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{endVar <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'imagery'}\NormalTok{, }\StringTok{'recall'}\NormalTok{) }\CommentTok{# name the endogenous variables}
+\NormalTok{maniVar <-}
+\StringTok{  }\KeywordTok{c}\NormalTok{(}\StringTok{'X'}\NormalTok{, }\StringTok{'imagery'}\NormalTok{, }\StringTok{'recall'}\NormalTok{) }\CommentTok{# name the observed variables}
+
+\NormalTok{single_med_full <-}\StringTok{ }\KeywordTok{mxModel}\NormalTok{(}
+  \StringTok{"Single_med_full"}\NormalTok{,}
+  \DataTypeTok{type =} \StringTok{"RAM"}\NormalTok{,}
+  \DataTypeTok{manifestVars =}\NormalTok{ maniVar,}
+  \CommentTok{#specify the manifest (observed) variables}
+  \KeywordTok{mxPath}\NormalTok{(}
+    \DataTypeTok{from =} \StringTok{"X"}\NormalTok{,}
+    \DataTypeTok{to =}\NormalTok{ endVar,}
+    \DataTypeTok{arrows =} \DecValTok{1}\NormalTok{,}
+    \DataTypeTok{free =} \OtherTok{TRUE}\NormalTok{,}
+    \DataTypeTok{values =} \FloatTok{.2}\NormalTok{,}
+    \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"b1"}\NormalTok{, }\StringTok{"b3"}\NormalTok{) }\CommentTok{# specify the path from X to the M (imagery) and Y (recall)}
+\NormalTok{  ),}
+  \KeywordTok{mxPath}\NormalTok{(}
+    \DataTypeTok{from =} \StringTok{'imagery'}\NormalTok{,}
+    \DataTypeTok{to =} \StringTok{'recall'}\NormalTok{,}
+    \DataTypeTok{arrows =} \DecValTok{1}\NormalTok{,}
+    \DataTypeTok{free =} \OtherTok{TRUE}\NormalTok{,}
+    \DataTypeTok{values =} \FloatTok{.2}\NormalTok{,}
+    \DataTypeTok{labels =} \StringTok{"b2"} \CommentTok{# specify the path from M to Y}
+\NormalTok{  ),}
+  \KeywordTok{mxPath}\NormalTok{(}
+    \DataTypeTok{from =}\NormalTok{ maniVar,}
+    \DataTypeTok{arrows =} \DecValTok{2}\NormalTok{,}
+    \DataTypeTok{free =} \OtherTok{TRUE}\NormalTok{,}
+    \DataTypeTok{values =} \FloatTok{.8}\NormalTok{,}
+    \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"s2x"}\NormalTok{, }\StringTok{"s2em"}\NormalTok{, }\StringTok{"s2ey"}\NormalTok{) }\CommentTok{# specify (residual) variances for the observed variables}
+\NormalTok{  ),}
+  \KeywordTok{mxPath}\NormalTok{(}
+    \DataTypeTok{from =} \StringTok{"one"}\NormalTok{,}
+    \DataTypeTok{to =}\NormalTok{ endVar,}
+    \DataTypeTok{arrows =} \DecValTok{1}\NormalTok{,}
+    \DataTypeTok{free =} \OtherTok{TRUE}\NormalTok{,}
+    \DataTypeTok{values =} \FloatTok{.1}\NormalTok{, }
+    \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"int1"}\NormalTok{,}\StringTok{"int2"}\NormalTok{) }\CommentTok{# specify the intercepts for the endogenous variables}
+\NormalTok{  ),}
+  \KeywordTok{mxAlgebra}\NormalTok{(b1 }\OperatorTok{*}\StringTok{ }\NormalTok{b2, }\DataTypeTok{name =} \StringTok{"ind"}\NormalTok{), }\CommentTok{# define the indirect effect and call it ind}
+  \KeywordTok{mxData}\NormalTok{(}\DataTypeTok{observed =}\NormalTok{ memory_df, }\DataTypeTok{type =} \StringTok{"raw"}\NormalTok{) }\CommentTok{# specify the data set for analysis}
+\NormalTok{)}
+\NormalTok{fit_single_med_full <-}\StringTok{ }\KeywordTok{mxRun}\NormalTok{(single_med_full) }\CommentTok{# run the single mediator null model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: In model 'Single_med_full' Optimizer returned a non-zero status
+## code 1. The final iterate satisfies the optimality conditions to the
+## accuracy requested, but the sequence of iterates has not yet converged.
+## Optimizer was terminated because no further improvement could be made in
+## the merit function (Mx status GREEN).
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{stat_single_med_full <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(fit_single_med_full) }\CommentTok{# save the results}
+\NormalTok{stat_single_med_full }\CommentTok{# print results of the full model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Summary of Single_med_full 
+##  
+## The final iterate satisfies the optimality conditions to the accuracy requested, but the sequence of iterates has not yet converged. Optimizer was terminated because no further improvement could be made in the merit function (Mx status GREEN). 
+##  
+## free parameters:
+##   name matrix row col   Estimate  Std.Error A
+## 1   b1      A   2   1 3.64018505 0.24259998  
+## 2   b3      A   3   1 0.04528978 0.38482959  
+## 3   b2      A   3   2 0.58267974 0.06507646  
+## 4  s2x      S   1   1 0.50948343 0.03750860  
+## 5 s2em      S   2   2 5.42736402 0.39956681  
+## 6 s2ey      S   3   3 8.48164638 0.62442551  
+## 7 int1      M   1   2 3.80662759 0.17316342  
+## 8 int2      M   1   3 8.74326503 0.32898072  
+## 
+## Model Statistics: 
+##                |  Parameters  |  Degrees of Freedom  |  Fit (-2lnL units)
+##        Model:              8                   1099              4305.727
+##    Saturated:              9                   1098                    NA
+## Independence:              6                   1101                    NA
+## Number of observations/statistics: 369/1107
+## 
+## Information Criteria: 
+##       |  df Penalty  |  Parameters Penalty  |  Sample-Size Adjusted
+## AIC:       2107.727               4321.727                 4322.127
+## BIC:      -2190.239               4353.013                 4327.632
+## To get additional fit indices, see help(mxRefModels)
+## timestamp: 2019-09-30 21:15:29 
+## Wall clock time: 0.06009293 secs 
+## optimizer:  NPSOL 
+## OpenMx version number: 2.14.11.15 
+## Need help?  See help(mxSummary)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(fit_single_med_full, }\DataTypeTok{means=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{resid =} \StringTok{"line"}\NormalTok{, }\DataTypeTok{digits =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "?plot.MxModel options: std, means, digits, strip_zero, file, splines=T/F, min=, max =, same = , fixed, resid= 'circle|line|none'"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiagrammeR}\OperatorTok{::}\KeywordTok{grViz}\NormalTok{(}\StringTok{"Single_med_full.gv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{htmlwidget-7404136e1bfc36c2f9fa}{}
+
+something
+
+Figure~@ref(fig:single-med-plot)
+
+In the first two lines of the script above, before specifying the model
+parts with \texttt{mxModel}, we can simplify the process by grouping the
+names of variables as a vector that will be used in model specification.
+For example, we specified a vector of the names of observed variables
+and saved them as \texttt{maniVar.} Then, we specified a vector of the
+names of endogenous variables and saved them as \texttt{endVar}. Next,
+we specified the full single-mediator model.
+
+The main command to specify an SEM is \texttt{mxModel.} The arguments
+provided to the \texttt{mxModel} function specified all the elements of
+the mediation model. For the single-mediator example, we specified the
+manifest (observed) and latent variables, the paths (regression
+coefficients), the indirect effect to be tested (or any function of
+model parameters), the constraint distinguishing the full and null
+models, and the variances and covariances among the variables.
+
+The first argument to \texttt{mxModel} is \texttt{single\_med\_full},
+which is a name we chose for the single-mediator model. The next
+argument, type=``RAM'', specifies that \texttt{OpenMx} uses the
+reticular action model (RAM; McArdle and McDonald (1984)), a symbolic
+algebraic notation to specify an SEM. In the argument
+\texttt{manifestVars}, we introduced the vector of the names of the
+observed (manifest) variables. The variable names must match the names
+in the data set \texttt{memory\_df}, as shown earlier in the output from
+the \texttt{glimpse} function.
+
+Next, we specify the paths between the variables using
+\texttt{mxPath()}. The function \texttt{mxPath()} corresponds to the
+graphical representation of paths in an SEM. For example, we use
+\texttt{mxPath()}to indicate a path (coefficient) corresponding to an
+arrow between the two variables specified in the arguments \texttt{from}
+(predictors) and \texttt{to} (response variables) in a single-mediator
+model. The argument \texttt{arrows=1} indicates a unidirectional arrow
+that starts from the variable in the argument \texttt{from} and ends at
+the variable specified in the argument \texttt{to}; that is, a
+unidirectional arrow indicates a path coefficient between the two
+variables. The argument \texttt{arrows=2} indicates a bidirectional
+arrow representing a covariance between the two variables. The argument
+\texttt{free\ =\ TRUE} indicates that the parameter is freely estimated;
+otherwise, \texttt{free\ =\ FALSE} indicates that the parameter is fixed
+at the values set by the argument \texttt{values}. If the parameter is
+freely estimated, the argument \texttt{values} would provide starting
+values. The argument \texttt{labels} provides labels for the
+coefficients. Because we specified more than one coefficient in the
+arguments \texttt{to}and \texttt{from}, we would provide more than one
+label corresponding to the stated order of the coefficients. For our
+example, \texttt{b1} is the coefficient for \(X \rightarrow\) Imagery
+and \texttt{b3} is the coefficient for \(X \rightarrow\) Recall.
+
+We use \texttt{mxAlgebra()} to define the indirect effect or, in
+general, a function of model parameters. In general, a function may
+include mathematical operations \texttt{+,-,*,/} (e.g.,
+\texttt{b1*b2/(b1*b2+b3)}), exponential (e.g., \texttt{exp()}), and
+logarithms (e.g., \texttt{log()}). The first argument to
+\texttt{mxAlgebra()} is the product of two coefficients,
+\texttt{b1\ *\ b2}, in which \texttt{b1} and \texttt{b2} had been
+defined in \texttt{mxPtah()}. The argument \texttt{name\ =\ "ind"} is
+used to name the indirect effect.
+
+Next, we specified the data set for the model. The \texttt{mxData}
+identified the data set to be analyzed. The argument
+\texttt{observed=memory\_df} specified the name of the data set in
+\texttt{R}. The second argument, \texttt{type="raw"}, indicated that the
+data set was in the raw format, which meant that the data set included
+observations on the participants as opposed to being a summary statistic
+such as a covariance matrix.
+
+Finally, we run the model using \texttt{mxRun()}, where the first
+argument is the name of the \texttt{mxModel} that is then saved as
+\texttt{fit\_single\_med\_full}. After getting no warning about whether
+the model estimation and convergence criterion are satisfied, we use the
+function \texttt{summary()} to save or print the summary of the results.
+We save the summary of the results as \texttt{stat\_single\_med\_full}
+and then print the summary. Below, we present the relevant part of the
+summary results.
+
+\begin{verbatim}
+Model Statistics:
+             | Parameters | Degrees of Freedom | Fit (-2lnL units)
+       Model:        8           1099             4305.727
+   Saturated:        9           1098                NA
+Independence:        6           1101                NA
+Information Criteria:
+     | df Penalty  | Parameters Penalty | Sample-Size Adjusted
+AIC:     2107.727       4321.727             4322.127
+BIC:    -2190.239       4353.013             4327.632
+\end{verbatim}
+
+Below the title \texttt{Model\ Statistics}, the row that starts with
+\texttt{Model}, gives the pertinent information for the full model. The
+output shows that the full single-mediator model has eight free
+parameters, with \(df_{Full}=1099\) and \(\mathcal{D}_{Null}=\)
+4305.726. Under \texttt{Information\ Criteria} and
+\texttt{Parameters\ Penalty}, we get the estimates of the information
+fit indices. For the full model, the information fit indices are
+AIC\textsubscript{Full}= 4321.727 and BIC\textsubscript{Full}= 4353.013.
+Alternatively, we can compute deviance, the AIC, and the BIC using the
+following functions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{-2}\OperatorTok{*}\KeywordTok{as.vector}\NormalTok{(}\KeywordTok{logLik}\NormalTok{(fit_single_med_full))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4305.727
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{AIC}\NormalTok{(fit_single_med_full)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4321.727
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{BIC}\NormalTok{(fit_single_med_full)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4353.013
+\end{verbatim}
+
+\hypertarget{checking-model-assumptions}{%
+\paragraph{Checking Model
+Assumptions}\label{checking-model-assumptions}}
+
+Before proceeding further, after fitting a mediation model, it is
+important to check the statistical assumptions about normality of the
+residuals and the presence of outliers (Cohen et al. 2003) . Because
+\texttt{OpenMx} does not offer checking residuals facilities, we fit the
+single-mediator model using two regression equations with the
+\texttt{lm()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lm_image <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(imagery }\OperatorTok{~}\StringTok{ }\NormalTok{x, }\DataTypeTok{data =}\NormalTok{ memory_df)}
+\NormalTok{lm_recall <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(recall }\OperatorTok{~}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{repetition, }\DataTypeTok{data =}\NormalTok{ memory_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ggResidpanel}\OperatorTok{::}\KeywordTok{resid_panel}\NormalTok{(lm_image)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{SuppMaterials-MBCO-rev1_files/figure-latex/rq1-diagplots-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ggResidpanel}\OperatorTok{::}\KeywordTok{resid_panel}\NormalTok{(lm_recall)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{SuppMaterials-MBCO-rev1_files/figure-latex/rq1-diagplots-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{outlierTest}\NormalTok{(lm_image)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## No Studentized residuals with Bonferroni p < 0.05
+## Largest |rstudent|:
+##      rstudent unadjusted p-value Bonferroni p
+## 285 -2.792633          0.0055027           NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{outlierTest}\NormalTok{(lm_recall)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## No Studentized residuals with Bonferroni p < 0.05
+## Largest |rstudent|:
+##     rstudent unadjusted p-value Bonferroni p
+## 248 2.848921          0.0046354           NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{influenceIndexPlot}\NormalTok{(lm_image)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{SuppMaterials-MBCO-rev1_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{influenceIndexPlot}\NormalTok{(lm_recall)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{SuppMaterials-MBCO-rev1_files/figure-latex/unnamed-chunk-3-2.pdf}
+
+We checked for normality of the residuals using QQ plots which indicated
+that the normality assumption for the residuals was reasonable. We also
+checked for the outliers using the influence plots and \(t\)-tests (Fox
+2016). The results showed there were no outliers.
+
+\hypertarget{step-2}{%
+\subsubsection{Step 2}\label{step-2}}
+
+We ran the null (restricted) model, which is the single-mediator model
+in which the indirect effect of Instruction on Recall through Imagery is
+constrained to zero, \(\beta_1 \beta_2 =0\). The code for the null model
+shown below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{single_med_null <-}
+\StringTok{  }\KeywordTok{mxModel}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ single_med_full,}
+          \DataTypeTok{name =} \StringTok{"single_med_null"}\NormalTok{,}
+          \KeywordTok{mxConstraint}\NormalTok{(ind }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{, }\DataTypeTok{name =} \StringTok{"b1b2_equals_0"}\NormalTok{))}
+\NormalTok{fit_single_med_null <-}\StringTok{ }\KeywordTok{mxRun}\NormalTok{(single_med_null)}
+\NormalTok{stat_single_med_null <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(fit_single_med_null)}
+\NormalTok{stat_single_med_null}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Summary of single_med_null 
+##  
+## free parameters:
+##   name matrix row col     Estimate    Std.Error A
+## 1   b1      A   2   1 9.522179e-23 1.038197e-23 !
+## 2   b3      A   3   1 4.529096e-02 3.656067e-01  
+## 3   b2      A   3   2 5.826781e-01 6.352900e-02  
+## 4  s2x      S   1   1 5.094816e-01 3.749345e-02 !
+## 5 s2em      S   2   2 8.738891e+00 6.423770e-01  
+## 6 s2ey      S   3   3 8.481638e+00 6.234669e-01  
+## 7 int1      M   1   2 5.661250e+00 1.538597e-01  
+## 8 int2      M   1   3 8.743274e+00 3.282580e-01  
+## 
+## Model Statistics: 
+##                |  Parameters  |  Degrees of Freedom  |  Fit (-2lnL units)
+##        Model:              8                   1100              4481.493
+##    Saturated:              9                   1099                    NA
+## Independence:              6                   1102                    NA
+## Number of observations/statistics: 369/1108
+## 
+## Constraint 'b1b2_equals_0' contributes 1 observed statistic. 
+## 
+## Information Criteria: 
+##       |  df Penalty  |  Parameters Penalty  |  Sample-Size Adjusted
+## AIC:       2281.493               4497.493                 4497.893
+## BIC:      -2020.384               4528.779                 4503.398
+## To get additional fit indices, see help(mxRefModels)
+## timestamp: 2019-09-30 21:15:32 
+## Wall clock time: 0.04202414 secs 
+## optimizer:  NPSOL 
+## OpenMx version number: 2.14.11.15 
+## Need help?  See help(mxSummary)
+\end{verbatim}
+
+Note that instead of specifying all the parts of the null mediation
+model using \texttt{MxModel} in the above code, we modified the full
+model \texttt{single\_med\_full}, as specified in the argument model.
+Next, we specified the non-linear constraint for the indirect effect
+through \texttt{mxConstraint}. The first argument \texttt{ind\ ==\ 0}
+constrains the indirect effect defined in the \texttt{mxAlgebra}
+statement to zero. The argument \texttt{name} assigns a name to the
+constraint. Finally, we saved the null model to
+\texttt{single\_med\_null}. Next, we ran the null model and saved the
+results to \texttt{fit\_single\_med\_null}. Relevant parts of the
+summary of the model results are shown below:
+
+\begin{verbatim}
+Model Statistics: 
+               |  Parameters  |  Degrees of Freedom  |  Fit (-2lnL units)
+       Model:              8                   1100              4481.493
+   Saturated:              9                   1099                    NA
+Independence:              6                   1102                    NA
+Number of observations/statistics: 369/1108
+Information Criteria: 
+      |  df Penalty  |  Parameters Penalty  |  Sample-Size Adjusted
+AIC:       2281.493               4497.493                 4497.893
+BIC:      -2020.384               4528.779                 4503.398
+\end{verbatim}
+
+For the null model, \(df_\text{Null}= 1100\) and
+\(\mathcal{D}_\text{Null}=\) 4481.492, and the information fit indices
+were AIC\textsubscript{Null} = 4497.493 and BIC\textsubscript{Null} =
+4528.779.
+
+\hypertarget{step-3}{%
+\subsubsection{Step 3}\label{step-3}}
+
+We compared the full and null model both in terms of the
+LRT\textsubscript{MBCO} and the information fit indices to evaluate
+\(H_0: \beta_1 \beta_2 =0\). The LRT\textsubscript{MBCO} equals the
+difference between the deviance of the two models. We use the function
+\texttt{code\ mxCompare} to compute the LRT\textsubscript{MBCO} as
+follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lrt_rq1 <-}\StringTok{ }\KeywordTok{mxCompare}\NormalTok{(fit_single_med_full, fit_single_med_null) }
+\NormalTok{lrt_rq1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              base      comparison ep minus2LL   df      AIC   diffLL
+## 1 Single_med_full            <NA>  8 4305.727 1099 2107.727       NA
+## 2 Single_med_full single_med_null  8 4481.493 1100 2281.493 175.7657
+##   diffdf            p
+## 1     NA           NA
+## 2      1 4.073738e-40
+\end{verbatim}
+
+The first row of the above output shows the results for the full model,
+which is the single-mediator model in Figure 1. The columns \texttt{ep},
+\texttt{minus2LL}, \texttt{df}, and \texttt{AIC} show the number of
+estimated parameters, deviance, degrees of freedom, and AIC,
+respectively. The columns \texttt{diffLL}, \texttt{diffdf}, and
+\texttt{p} represent the difference in deviance (not the
+log-likelihoods), the difference in degrees of freedom, and
+\emph{p}-value for two models being compared. The second row shows the
+results for the null model under the columns \texttt{ep},
+\texttt{minus2LL}, \texttt{df}, and \texttt{AIC.} The results of
+comparing the null and full model are shown under the columns
+\texttt{diffLL}, \texttt{diffdf}, and \texttt{p}. The value for the test
+statistic LRT\textsubscript{MBCO} = 175.766 is located under the column
+\texttt{diffLL}. The degrees of freedom are \emph{df}\textsubscript{LRT}
+= 1 and \emph{p}-value = \ensuremath{4.0737384\times 10^{-40}}; these
+amounts are located under the columns \texttt{diffdf} and \texttt{p},
+respectively.
+
+Next, we used the following commands to compute the Monte Carlo CI for
+the indirect effect. First, we used the functions \texttt{coef} and
+\texttt{vcov} to extract the path coefficients and covariance matrix of
+the coefficients, respectively, from the full single-mediator model.
+Next, we used the \texttt{ci} function in the \texttt{RMediation}
+package (Tofighi and MacKinnon 2011, 2016) to compute the 95\% Monte
+Carlo CI. The first argument \texttt{mu} to this function is a vector of
+the coefficient estimates, and the second argument \texttt{Sigma} is a
+covariance matrix of the coefficient estimates. The argument quant
+accepts a formula for the indirect effect that starts with the symbol
+\texttt{“\textasciitilde{}”}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Mu <-}\StringTok{ }\KeywordTok{coef}\NormalTok{(fit_single_med_full) }\CommentTok{# path coefficient estimates from the full single mediator model}
+\NormalTok{Sigma <-}
+\StringTok{  }\KeywordTok{vcov}\NormalTok{(fit_single_med_full) }\CommentTok{#covariance matrix of the parameter estimates from the full single mediator model}
+
+\NormalTok{mc_ci1 <-}\StringTok{ }\NormalTok{RMediation}\OperatorTok{::}\KeywordTok{ci}\NormalTok{(}\DataTypeTok{mu =}\NormalTok{ Mu,}
+                         \DataTypeTok{Sigma =}\NormalTok{ Sigma,}
+                         \DataTypeTok{quant =} \OperatorTok{~}\StringTok{ }\NormalTok{b1 }\OperatorTok{*}\StringTok{ }\NormalTok{b2)}
+\NormalTok{mc_ci <-}\StringTok{ }\KeywordTok{t}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(mc_ci1[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{]),}\DecValTok{3}\NormalTok{ ))}
+\KeywordTok{cat}\NormalTok{(}\StringTok{" Monte Carlo CI for b1*b2:}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Monte Carlo CI for b1*b2:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(mc_ci)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrrr@{}}
+\toprule
+2.5 \% & 97.5 \% & Estimate & SE\tabularnewline
+\midrule
+\endhead
+1.599 & 2.682 & 2.121 & 0.276\tabularnewline
+\bottomrule
+\end{longtable}
+
+We also recommend computing the difference in \(R^2\)s between the full
+and null model to examine change in the effect sizes that occurs as a
+result of the indirect effect through Imagery. As shown below, for
+Recall, \(R^2\) remained unchanged to four decimal places while for
+Imagery, \(\Delta R^2 = .3779\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cat}\NormalTok{(}\StringTok{"R-Square for the full model}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## R-Square for the full model
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rsq}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ fit_single_med_full, }\DataTypeTok{name =} \KeywordTok{c}\NormalTok{(}\StringTok{"imagery"}\NormalTok{,}\StringTok{"recall"}\NormalTok{) )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   imagery    recall 
+## 0.3806254 0.2642803
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cat}\NormalTok{(}\StringTok{"R-Square for the null model}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## R-Square for the null model
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rsq}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ fit_single_med_null, }\DataTypeTok{name =} \KeywordTok{c}\NormalTok{(}\StringTok{"imagery"}\NormalTok{,}\StringTok{"recall"}\NormalTok{) )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     imagery      recall 
+## 0.002711604 0.264281019
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cat}\NormalTok{(}\StringTok{"Delta R-Square }\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Delta R-Square
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{(}\KeywordTok{rsq}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ fit_single_med_full, }\DataTypeTok{name =} \KeywordTok{c}\NormalTok{(}\StringTok{"imagery"}\NormalTok{,}\StringTok{"recall"}\NormalTok{) )}\OperatorTok{-}\KeywordTok{rsq}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ fit_single_med_null, }\DataTypeTok{name =} \KeywordTok{c}\NormalTok{(}\StringTok{"imagery"}\NormalTok{,}\StringTok{"recall"}\NormalTok{) ), }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## imagery  recall 
+##  0.3779  0.0000
+\end{verbatim}
+
+The first argument model to \texttt{rsq} specifies an \texttt{OpenMx}
+model and the second argument name specifies names of endogenous
+variables (i.e., variables in which a single headed arrow enters; namely
+those that are a function of another variable).
+
+\hypertarget{research-question-2-does-the-instruction-to-repeat-words-increase-use-of-repetition-to-memorize-the-words-that-in-turn-increases-the-number-of-words-recalled-over-and-above-using-mental-imagery}{%
+\subsection{Research Question 2: Does the Instruction to Repeat Words
+Increase Use of Repetition to Memorize the Words that, in turn,
+Increases the Number of Words Recalled over and above Using Mental
+Imagery?}\label{research-question-2-does-the-instruction-to-repeat-words-increase-use-of-repetition-to-memorize-the-words-that-in-turn-increases-the-number-of-words-recalled-over-and-above-using-mental-imagery}}
+
+\hypertarget{step-1-1}{%
+\subsubsection{Step 1}\label{step-1-1}}
+
+We estimated the model with two parallel mediators in Figure 2, which is
+the full model for this research question. For this model, the two
+specific indirect effects associated with Imagery and Repetition were
+freely estimated. Below is the \texttt{OpenMx} code for the full
+parallel two mediator model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{endVar <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'imagery'}\NormalTok{, }\StringTok{'repetition'}\NormalTok{, }\StringTok{'recall'}\NormalTok{)}
+\NormalTok{maniVar <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'X'}\NormalTok{, }\StringTok{'imagery'}\NormalTok{, }\StringTok{'repetition'}\NormalTok{, }\StringTok{'recall'}\NormalTok{)}
+\NormalTok{two_med_full <-}\StringTok{ }\KeywordTok{mxModel}\NormalTok{(}
+  \StringTok{"two_med_full"}\NormalTok{,}
+  \DataTypeTok{type =} \StringTok{"RAM"}\NormalTok{,}
+  \DataTypeTok{manifestVars =}\NormalTok{ maniVar,}
+  \KeywordTok{mxPath}\NormalTok{(}
+    \DataTypeTok{from =} \StringTok{"X"}\NormalTok{,}
+    \DataTypeTok{to =}\NormalTok{ endVar,}
+    \DataTypeTok{arrows =} \DecValTok{1}\NormalTok{,}
+    \DataTypeTok{free =} \OtherTok{TRUE}\NormalTok{,}
+    \DataTypeTok{values =} \FloatTok{.2}\NormalTok{,}
+    \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"b1"}\NormalTok{, }\StringTok{"b3"}\NormalTok{, }\StringTok{"b5"}\NormalTok{)}
+\NormalTok{  ),}
+  \KeywordTok{mxPath}\NormalTok{(}
+    \DataTypeTok{from =} \StringTok{'repetition'}\NormalTok{,}
+    \DataTypeTok{to =} \StringTok{'recall'}\NormalTok{,}
+    \DataTypeTok{arrows =} \DecValTok{1}\NormalTok{,}
+    \DataTypeTok{free =} \OtherTok{TRUE}\NormalTok{,}
+    \DataTypeTok{values =} \FloatTok{.2}\NormalTok{,}
+    \DataTypeTok{labels =} \StringTok{'b4'}
+\NormalTok{  ),}
+  \KeywordTok{mxPath}\NormalTok{(}
+    \DataTypeTok{from =} \StringTok{'imagery'}\NormalTok{,}
+    \DataTypeTok{to =} \StringTok{'recall'}\NormalTok{,}
+    \DataTypeTok{arrows =} \DecValTok{1}\NormalTok{,}
+    \DataTypeTok{free =} \OtherTok{TRUE}\NormalTok{,}
+    \DataTypeTok{values =} \FloatTok{.2}\NormalTok{,}
+    \DataTypeTok{labels =} \StringTok{"b2"}
+\NormalTok{  ),}
+  \KeywordTok{mxPath}\NormalTok{(}
+    \DataTypeTok{from =}\NormalTok{ maniVar,}
+    \DataTypeTok{arrows =} \DecValTok{2}\NormalTok{,}
+    \DataTypeTok{free =} \OtherTok{TRUE}\NormalTok{,}
+    \DataTypeTok{values =} \FloatTok{.8}\NormalTok{,}
+    \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"s2x"}\NormalTok{, }\StringTok{"s2em1"}\NormalTok{, }\StringTok{"s2em2"}\NormalTok{, }\StringTok{"s2ey"}\NormalTok{)}
+\NormalTok{  ),}
+  \KeywordTok{mxPath}\NormalTok{(}
+    \DataTypeTok{from =} \StringTok{'imagery'}\NormalTok{,}
+    \DataTypeTok{to =} \StringTok{'repetition'}\NormalTok{,}
+    \DataTypeTok{arrows =} \DecValTok{2}\NormalTok{,}
+    \DataTypeTok{free =} \OtherTok{TRUE}\NormalTok{,}
+    \DataTypeTok{values =} \FloatTok{.2}\NormalTok{,}
+    \DataTypeTok{labels =} \StringTok{"cov_m1m2"}
+\NormalTok{  ),}
+  \KeywordTok{mxPath}\NormalTok{(}
+    \DataTypeTok{from =} \StringTok{"one"}\NormalTok{,}
+    \DataTypeTok{to =}\NormalTok{ endVar,}
+    \DataTypeTok{arrows =} \DecValTok{1}\NormalTok{,}
+    \DataTypeTok{free =} \OtherTok{TRUE}\NormalTok{,}
+    \DataTypeTok{values =} \FloatTok{.1}\NormalTok{,}
+    \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"int1"}\NormalTok{, }\StringTok{"int2"}\NormalTok{, }\StringTok{"int3"}\NormalTok{)}
+\NormalTok{  ),}
+  \KeywordTok{mxAlgebra}\NormalTok{(b1 }\OperatorTok{*}\StringTok{ }\NormalTok{b2, }\DataTypeTok{name =} \StringTok{"ind1"}\NormalTok{),}
+  \KeywordTok{mxAlgebra}\NormalTok{(b3 }\OperatorTok{*}\StringTok{ }\NormalTok{b4, }\DataTypeTok{name =} \StringTok{"ind2"}\NormalTok{),}
+  \KeywordTok{mxData}\NormalTok{(}\DataTypeTok{observed =}\NormalTok{ memory_df, }\DataTypeTok{type =} \StringTok{"raw"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{fit_two_med_full <-}\StringTok{ }\KeywordTok{mxTryHard}\NormalTok{(two_med_full) }\CommentTok{# run the full model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{stat_two_med_full <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(fit_two_med_full) }\CommentTok{# save the results}
+\NormalTok{stat_two_med_full }\CommentTok{# printing results}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Summary of two_med_full 
+##  
+## free parameters:
+##        name matrix row col    Estimate  Std.Error A
+## 1        b1      A   2   1  3.64017190 0.24259409  
+## 2        b3      A   3   1 -3.80380675 0.21862053  
+## 3        b5      A   4   1  0.10901983 0.44349780 !
+## 4        b2      A   4   2  0.58769683 0.06734947  
+## 5        b4      A   4   3  0.02155688 0.07473823  
+## 6       s2x      S   1   1  0.50948566 0.03750880  
+## 7     s2em1      S   2   2  5.42737309 0.39953786  
+## 8  cov_m1m2      S   2   3 -1.26366712 0.26291464 !
+## 9     s2em2      S   3   3  4.40768767 0.32447306  
+## 10     s2ey      S   4   4  8.47970473 0.62426883 !
+## 11     int1      M   1   2  3.80663024 0.17316070  
+## 12     int2      M   1   3  8.01656645 0.15604890  
+## 13     int3      M   1   4  8.55135498 0.74226839  
+## 
+## Model Statistics: 
+##                |  Parameters  |  Degrees of Freedom  |  Fit (-2lnL units)
+##        Model:             13                   1463              5874.685
+##    Saturated:             14                   1462                    NA
+## Independence:              8                   1468                    NA
+## Number of observations/statistics: 369/1476
+## 
+## Information Criteria: 
+##       |  df Penalty  |  Parameters Penalty  |  Sample-Size Adjusted
+## AIC:       2948.685               5900.685                 5901.711
+## BIC:      -2772.810               5951.526                 5910.281
+## To get additional fit indices, see help(mxRefModels)
+## timestamp: 2019-09-30 21:15:34 
+## Wall clock time: 0.02919292 secs 
+## optimizer:  NPSOL 
+## OpenMx version number: 2.14.11.15 
+## Need help?  See help(mxSummary)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## Compute R2s for the endogenous variables}
+\KeywordTok{rsq}\NormalTok{(fit_two_med_full, }\KeywordTok{c}\NormalTok{(}\StringTok{"imagery"}\NormalTok{, }\StringTok{"repetition"}\NormalTok{, }\StringTok{"recall"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    imagery repetition     recall 
+##  0.3806244  0.4521506  0.2644487
+\end{verbatim}
+
+Note that in above code, both \texttt{endVar} and \texttt{maniVar} now
+include the names of the mediators Imagery and Repetition. As a result,
+we specified two extra paths from Instruction to Repetition and from
+Repetition to Recall using \texttt{mxPath}. Because the two mediators
+can covary, we specified the covariance between the associated residuals
+and named it \texttt{cov\_m1m2}. Finally, we specified two specific
+indirect effects through the two mediators using \texttt{mxAlgebra} and
+named them \texttt{ind1} and \texttt{ind2}.
+
+The above output shows that the full two-mediator model had 13 free
+parameters, with df\textsubscript{Full} =1463 and
+\(\mathcal{D}\)\textsubscript{Full} = 5874.685. For the full model, the
+results were that AIC\textsubscript{Full} = 5900.685 and
+BIC\textsubscript{Full} = 5951.526; the effect sizes were
+R\textsuperscript{2}\textsubscript{Imagery} =.38,
+R\textsuperscript{2}\textsubscript{Repetition} =.45, and
+R\textsuperscript{2}\textsubscript{Recall} =.26. We computed the
+specific indirect effects through Imagery and Repetition and the 95\% CI
+for each specific indirect effect using the \texttt{ci} function in the
+RMediation package. The results are shown below:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Mu <-}\StringTok{ }\KeywordTok{coef}\NormalTok{(fit_two_med_full) }\CommentTok{# path coefficient estimates}
+\NormalTok{Sigma <-}
+\StringTok{  }\KeywordTok{vcov}\NormalTok{(fit_two_med_full) }\CommentTok{#covariance matrix of the parameter estimates}
+\CommentTok{## Monte Carlo CI for b1*b2:}
+\NormalTok{mc_ci_b1b2 <-}\StringTok{ }\KeywordTok{ci}\NormalTok{(}\DataTypeTok{mu =}\NormalTok{ Mu,}
+             \DataTypeTok{Sigma =}\NormalTok{ Sigma,}
+             \DataTypeTok{quant =} \OperatorTok{~}\StringTok{ }\NormalTok{b1 }\OperatorTok{*}\StringTok{ }\NormalTok{b2)}
+\NormalTok{mc_ci_b1b2 <-}\StringTok{ }\KeywordTok{t}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(mc_ci_b1b2)[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{],}\DecValTok{3}\NormalTok{))}
+\KeywordTok{cat}\NormalTok{(}\StringTok{" Monte Carlo CI for b1*b2:}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Monte Carlo CI for b1*b2:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(mc_ci_b1b2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrr@{}}
+\toprule
+2.5 \% & 97.5 \% & Estimate\tabularnewline
+\midrule
+\endhead
+1.604 & 2.716 & 2.14\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## Monte Carlo CI for b4*b5:}
+\NormalTok{mc_ci_b4b5 <-}\StringTok{ }\KeywordTok{ci}\NormalTok{(}\DataTypeTok{mu =}\NormalTok{ Mu,}
+             \DataTypeTok{Sigma =}\NormalTok{ Sigma,}
+             \DataTypeTok{quant =} \OperatorTok{~}\StringTok{ }\NormalTok{b3 }\OperatorTok{*}\StringTok{ }\NormalTok{b4)}
+\NormalTok{mc_ci_b4b5<-}\StringTok{ }\KeywordTok{t}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(mc_ci_b4b5)[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{],}\DecValTok{3}\NormalTok{))}
+\KeywordTok{cat}\NormalTok{(}\StringTok{" Monte Carlo CI for b3*b4:}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Monte Carlo CI for b3*b4:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(mc_ci_b4b5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrr@{}}
+\toprule
+2.5 \% & 97.5 \% & Estimate\tabularnewline
+\midrule
+\endhead
+-0.641 & 0.477 & -0.082\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{step-2-1}{%
+\subsubsection{Step 2}\label{step-2-1}}
+
+Next, we fit the null model that satisfies the null hypothesis:
+\(H_0: \beta_3 \, \beta_4 =0\). We fit the null model by fixing the
+mediation chain through Repetition to zero, \(\beta_3 \, \beta_4 =0\).
+In \texttt{OpenMx}, we specified the null model by adding the constraint
+\texttt{mxConstraint(ind\_repetition\ ==\ 0,\ name\ =\ "b4b5\_equals\_0")}
+to the full model in Step 1, ran it, and then saved the results to
+\texttt{fit\_two\_med\_null.} The summary results as well as the effect
+sizes for the endogenous variables for the null two-mediator model are
+shown below:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{two_med_null <-}\StringTok{ }\KeywordTok{mxModel}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ two_med_full,}
+                        \DataTypeTok{name =} \StringTok{"two_med_null"}\NormalTok{,}
+                        \KeywordTok{mxConstraint}\NormalTok{(ind2 }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{, }\DataTypeTok{name =} \StringTok{"b3b4_equals_0"}\NormalTok{))}
+\NormalTok{fit_two_med_null <-}\StringTok{ }\KeywordTok{mxRun}\NormalTok{(two_med_null)}
+\NormalTok{stat_two_med_null <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(fit_two_med_null) }\CommentTok{# saving the results}
+\NormalTok{stat_two_med_null }\CommentTok{# printing results }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Summary of two_med_null 
+##  
+## free parameters:
+##        name matrix row col      Estimate    Std.Error A
+## 1        b1      A   2   1  3.640174e+00 2.416781e-01  
+## 2        b3      A   3   1 -3.803803e+00 2.181357e-01  
+## 3        b5      A   4   1  4.528902e-02 3.630610e-01  
+## 4        b2      A   4   2  5.826797e-01 6.331447e-02  
+## 5        b4      A   4   3  5.129810e-23 2.941779e-24 !
+## 6       s2x      S   1   1  5.094832e-01 3.749198e-02  
+## 7     s2em1      S   2   2  5.427373e+00 3.966568e-01  
+## 8  cov_m1m2      S   2   3 -1.263665e+00 2.574043e-01  
+## 9     s2em2      S   3   3  4.407693e+00 3.221346e-01  
+## 10     s2ey      S   4   4  8.481652e+00 6.233655e-01  
+## 11     int1      M   1   2  3.806630e+00 1.726238e-01  
+## 12     int2      M   1   3  8.016564e+00 1.558209e-01  
+## 13     int3      M   1   4  8.743264e+00 3.281558e-01  
+## 
+## Model Statistics: 
+##                |  Parameters  |  Degrees of Freedom  |  Fit (-2lnL units)
+##        Model:             13                   1464              5874.768
+##    Saturated:             14                   1463                    NA
+## Independence:              8                   1469                    NA
+## Number of observations/statistics: 369/1477
+## 
+## Constraint 'b3b4_equals_0' contributes 1 observed statistic. 
+## 
+## Information Criteria: 
+##       |  df Penalty  |  Parameters Penalty  |  Sample-Size Adjusted
+## AIC:       2946.768               5900.768                 5901.794
+## BIC:      -2778.638               5951.609                 5910.364
+## To get additional fit indices, see help(mxRefModels)
+## timestamp: 2019-09-30 21:15:38 
+## Wall clock time: 0.03077698 secs 
+## optimizer:  NPSOL 
+## OpenMx version number: 2.14.11.15 
+## Need help?  See help(mxSummary)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## Compute R2s for the endogenous variables}
+\KeywordTok{rsq}\NormalTok{(fit_two_med_null, }\KeywordTok{c}\NormalTok{(}\StringTok{"imagery"}\NormalTok{, }\StringTok{"repetition"}\NormalTok{, }\StringTok{"recall"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    imagery repetition     recall 
+##  0.3806244  0.4521500  0.2642798
+\end{verbatim}
+
+\hypertarget{step-3-1}{%
+\subsubsection{Step 3}\label{step-3-1}}
+
+Finally, we compared the two models in terms of the
+LRT\textsubscript{MBCO}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mxCompare}\NormalTok{(fit_two_med_full, fit_two_med_null)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           base   comparison ep minus2LL   df      AIC     diffLL diffdf
+## 1 two_med_full         <NA> 13 5874.685 1463 2948.685         NA     NA
+## 2 two_med_full two_med_null 13 5874.768 1464 2946.768 0.08309956      1
+##           p
+## 1        NA
+## 2 0.7731401
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Compute differences in R2 for the endogenous variables}
+\KeywordTok{round}\NormalTok{(}\KeywordTok{rsq}\NormalTok{(fit_two_med_full, }\KeywordTok{c}\NormalTok{(}\StringTok{"imagery"}\NormalTok{, }\StringTok{"repetition"}\NormalTok{, }\StringTok{"recall"}\NormalTok{))}\OperatorTok{-}\StringTok{ }\KeywordTok{rsq}\NormalTok{(fit_two_med_null, }\KeywordTok{c}\NormalTok{(}\StringTok{"imagery"}\NormalTok{, }\StringTok{"repetition"}\NormalTok{, }\StringTok{"recall"}\NormalTok{)), }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    imagery repetition     recall 
+##      0e+00      0e+00      2e-04
+\end{verbatim}
+
+The results showed that LRT\textsubscript{MBCO} = 0.083,
+df\textsubscript{LRT} =1, and \emph{p} = .773. The specific indirect
+effect through Repetition was, therefore, not different from zero, -0.08
+(SE = 0.29), 95\% Monte Carlo CI = {[}-0.64, 0.48{]}. Further, the
+R\textsuperscript{2} for Imagery, Repetition, and Recall remained
+unchanged to three decimal places, and the information fit indices
+between the two models were roughly the same. These results indicate
+that the specific indirect effect through Repetition above and beyond
+the specific indirect effect through Imagery does not appear to be
+different from zero.
+
+\hypertarget{research-question-3-is-the-indirect-effect-of-instruction-to-create-mental-images-on-the-number-of-words-recalled-through-the-use-of-mental-imagery-greater-than-the-indirect-effect-of-instruction-to-repeat-words-on-the-number-of-words-recalled-through-the-use-of-repetition}{%
+\section{Research Question 3: Is the Indirect Effect of Instruction to
+Create Mental Images on the Number of Words Recalled through the Use of
+Mental Imagery Greater than the Indirect Effect of Instruction to Repeat
+Words on the Number of Words Recalled Through the Use of
+Repetition?}\label{research-question-3-is-the-indirect-effect-of-instruction-to-create-mental-images-on-the-number-of-words-recalled-through-the-use-of-mental-imagery-greater-than-the-indirect-effect-of-instruction-to-repeat-words-on-the-number-of-words-recalled-through-the-use-of-repetition}}
+
+For the third research question, we were interested in comparing the
+sizes of the two specific indirect effects: the indirect effect of
+Instruction on Recall through Imagery (i.e., \(β_1 β_2\)) and the
+indirect effect of Instruction on Recall through Repetition (i.e.,
+\(β_4 β_5\)).
+
+\hypertarget{step-1-2}{%
+\subsection{Step 1}\label{step-1-2}}
+
+The full model for this research question was the same as the full model
+in Research Question 2. Thus, we used the results (i.e., the vector of
+the coefficient estimates, the covariance matrix of the coefficient
+estimate, R\textsuperscript{2}, indirect effects estimates, AIC, and
+BIC) of the full parallel two-mediator model from Research Question 2.
+
+\hypertarget{step-2-2}{%
+\subsection{Step 2}\label{step-2-2}}
+
+The null hypothesis for this research question is
+\(H_0: \beta_1 \beta_2 = \beta_3 \beta_4\). To test this hypothesis, the
+null model is a two-mediator model in which we constrained the two
+specific indirect effects to be equal. To specify the null model for
+this research question in \texttt{OpenMx}, we added the following
+argument to the \texttt{mxModel} function for full model in Research
+Question 2:
+\texttt{mxConstraint(ind\_imagery==ind\_repetition,name\ =\ "ind1\_eq\_ind2")}.
+We then ran the model and saved the results as
+\texttt{fit\_two\_med\_contrast}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## two-mediator model with the contrast fixed at zero}
+\NormalTok{two_med_contrast <-}\StringTok{ }\KeywordTok{mxModel}\NormalTok{(}\DataTypeTok{model =}\NormalTok{ two_med_full,}
+                            \DataTypeTok{name =} \StringTok{"two_med_contrast"}\NormalTok{,}
+                            \KeywordTok{mxConstraint}\NormalTok{(ind1 }\OperatorTok{==}\StringTok{ }\NormalTok{ind2, }\DataTypeTok{name =} \StringTok{"ind1_eq_ind2"}\NormalTok{))}
+\NormalTok{fit_two_med_contrast <-}\StringTok{ }\KeywordTok{mxRun}\NormalTok{(two_med_contrast) }\CommentTok{# fitting the model}
+\NormalTok{stat_two_med_contrast <-}
+\StringTok{  }\KeywordTok{summary}\NormalTok{(fit_two_med_contrast) }\CommentTok{#save the results}
+\NormalTok{stat_two_med_contrast }\CommentTok{## print the summary results}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Summary of two_med_contrast 
+##  
+## free parameters:
+##        name matrix row col   Estimate  Std.Error A
+## 1        b1      A   2   1  3.4619985 0.23928899 !
+## 2        b3      A   3   1 -3.9128023 0.21720490 !
+## 3        b5      A   4   1 -0.1882543 0.40821963  
+## 4        b2      A   4   2  0.3360970 0.04573403 !
+## 5        b4      A   4   3 -0.2973744 0.04132634 !
+## 6       s2x      S   1   1  0.5094833 0.03748574  
+## 7     s2em1      S   2   2  5.4353060 0.39613042  
+## 8  cov_m1m2      S   2   3 -1.2588089 0.25480530  
+## 9     s2em2      S   3   3  4.4106633 0.32120360  
+## 10     s2ey      S   4   4  9.0688068 0.66792636  
+## 11     int1      M   1   2  3.8974080 0.17176855  
+## 12     int2      M   1   3  8.0720977 0.15548889  
+## 13     int3      M   1   4 12.0658321 0.29118476  
+## 
+## Model Statistics: 
+##                |  Parameters  |  Degrees of Freedom  |  Fit (-2lnL units)
+##        Model:             13                   1464              5900.514
+##    Saturated:             14                   1463                    NA
+## Independence:              8                   1469                    NA
+## Number of observations/statistics: 369/1477
+## 
+## Constraint 'ind1_eq_ind2' contributes 1 observed statistic. 
+## 
+## Information Criteria: 
+##       |  df Penalty  |  Parameters Penalty  |  Sample-Size Adjusted
+## AIC:       2972.514               5926.514                 5927.539
+## BIC:      -2752.893               5977.354                 5936.109
+## To get additional fit indices, see help(mxRefModels)
+## timestamp: 2019-09-30 21:15:38 
+## Wall clock time: 0.032866 secs 
+## optimizer:  NPSOL 
+## OpenMx version number: 2.14.11.15 
+## Need help?  See help(mxSummary)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Compute R2s for the null model}
+\KeywordTok{rsq}\NormalTok{(fit_two_med_contrast, }\KeywordTok{c}\NormalTok{(}\StringTok{"imagery"}\NormalTok{, }\StringTok{"repetition"}\NormalTok{, }\StringTok{"recall"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    imagery repetition     recall 
+##  0.3797190  0.4517808  0.2133485
+\end{verbatim}
+
+The above output shows that the null model had df\textsubscript{Null}
+=1464 and D\textsubscript{Null} =5900.514. The information fit indices
+for the null model were AIC\textsubscript{Null} = 5926.514 and
+BIC\textsubscript{Null} = 5977.354. The effect sizes were
+R\textsuperscript{2}\textsubscript{Imagery} =.38,
+R\textsuperscript{2}\textsubscript{Repetition}=.45, and
+R\textsuperscript{2}\textsubscript{Recall} =.21. \# Step 3
+
+We compared the full parallel two-mediator model in Step 1 and the null
+parallel two-mediator model in Step 2. We computed the
+LRT\textsubscript{MBCO} using the function
+\texttt{mxCompare(fit\_two\_med\_full,fit\_two\_med\_contrast)}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mxCompare}\NormalTok{(fit_two_med_full,fit_two_med_contrast) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           base       comparison ep minus2LL   df      AIC   diffLL diffdf
+## 1 two_med_full             <NA> 13 5874.685 1463 2948.685       NA     NA
+## 2 two_med_full two_med_contrast 13 5900.514 1464 2972.514 25.82825      1
+##              p
+## 1           NA
+## 2 3.731857e-07
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Compute differences in R2s}
+\KeywordTok{round}\NormalTok{(}\KeywordTok{rsq}\NormalTok{(fit_two_med_full, }\KeywordTok{c}\NormalTok{(}\StringTok{"imagery"}\NormalTok{, }\StringTok{"repetition"}\NormalTok{, }\StringTok{"recall"}\NormalTok{))}\OperatorTok{-}\KeywordTok{rsq}\NormalTok{(fit_two_med_contrast, }\KeywordTok{c}\NormalTok{(}\StringTok{"imagery"}\NormalTok{, }\StringTok{"repetition"}\NormalTok{, }\StringTok{"recall"}\NormalTok{)), }\DataTypeTok{digits =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    imagery repetition     recall 
+##     0.0009     0.0004     0.0511
+\end{verbatim}
+
+We also computed the 95\% Monte Carlo CI for the contrast of the two
+indirect effects using the \texttt{ci} function in the
+\texttt{RMediation} package, where the arguments \texttt{mu} and
+\texttt{Sigma} were the vector of the coefficient estimates and the
+covariance matrix of the coefficient estimates, respectively, obtained
+from the full parallel two-mediator model in Step 1:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Mu <-}\StringTok{ }\KeywordTok{coef}\NormalTok{(fit_two_med_full) }\CommentTok{# path coefficient estimates}
+\NormalTok{Sigma <-}
+\StringTok{  }\KeywordTok{vcov}\NormalTok{(fit_two_med_full) }\CommentTok{#covariance matrix of the parameter estimates}
+\NormalTok{mc_ci_con <-}\StringTok{ }\KeywordTok{ci}\NormalTok{(}\DataTypeTok{mu =}\NormalTok{ Mu,}
+                \DataTypeTok{Sigma =}\NormalTok{ Sigma,}
+                \DataTypeTok{quant =} \OperatorTok{~}\StringTok{ }\NormalTok{b1 }\OperatorTok{*}\StringTok{ }\NormalTok{b2 }\OperatorTok{-}\StringTok{ }\NormalTok{b3 }\OperatorTok{*}\StringTok{ }\NormalTok{b4)}
+\NormalTok{mc_ci_con <-}\StringTok{ }\KeywordTok{t}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(mc_ci_con)[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{],}\DecValTok{3}\NormalTok{))}
+
+\KeywordTok{cat}\NormalTok{(}\StringTok{" Monte Carlo CI for Contrast:}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Monte Carlo CI for Contrast:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(mc_ci_con)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrr@{}}
+\toprule
+2.5 \% & 97.5 \% & Estimate\tabularnewline
+\midrule
+\endhead
+1.361 & 3.106 & 2.22\tabularnewline
+\bottomrule
+\end{longtable}
+
+The results of the MBCO procedure showed that LRT\textsubscript{MBCO} =
+25.828, df\textsubscript{LRT} =1, and \emph{p}=3.731857E-07. These
+outcomes indicate that the indirect effect through Imagery appeared to
+be larger than the indirect effect through Repetition by 2.222 (SE=
+0.445) words, 95\% Monte Carlo CI = {[}1.364, 3.11{]}. Comparing the
+R\textsuperscript{2}s for the endogenous variables obtained from Step 1
+and 2 for Imagery and Repetition, R\textsuperscript{2}s remained
+unchanged to three decimal places while for Recall \(\Delta R^2\)=.05.
+Comparing the information fit indices of the null model to the full
+model also supports the conclusion that the full model fit the data
+better than did the null model. We next describe simulation studies that
+compare the statistical properties of LRT\textsubscript{MBCO} with the
+commonly used methods of testing indirect effects.
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-boker2011}{}%
+Boker, Steven, Michael C. Neale, Hermine Maes, Michael Wilde, Michael
+Spiegel, Timothy Brick, Jeffrey Spies, et al. 2011. ``OpenMx: An Open
+Source Extended Structural Equation Modeling Framework.''
+\emph{Psychometrika} 76 (2): 306--17.
+\url{https://doi.org/10.1007/s11336-010-9200-6}.
+
+\leavevmode\hypertarget{ref-cohen2003}{}%
+Cohen, Jacob, Patricia Cohen, Stephen G. West, and Leona S. Aiken. 2003.
+\emph{Applied Multiple Regression/Correlation Analysis for the
+Behavioral Sciences}. 3rd ed. Mahwah, NJ: Erlbaum.
+
+\leavevmode\hypertarget{ref-fox2016}{}%
+Fox, John. 2016. \emph{Applied Regression Analysis and Generalized
+Linear Models}. 3rd ed. Los Angeles, CA: SAGE.
+
+\leavevmode\hypertarget{ref-mackinnon2018}{}%
+MacKinnon, David P., Matthew J. Valente, and Ingrid C. Wurpts. 2018.
+``Benchmark Validation of Statistical Models: Application to Mediation
+Analysis of Imagery and Memory.'' \emph{Psychological Methods} 23:
+654--71. \url{https://doi.org/10.1037/met0000174}.
+
+\leavevmode\hypertarget{ref-mcardle1984}{}%
+McArdle, J. Jack, and Roderick P. McDonald. 1984. ``Some Algebraic
+Properties of the Reticular Action Model for Moment Structures.''
+\emph{British Journal of Mathematical and Statistical Psychology} 37
+(2): 234--51. \url{https://doi.org/10.1111/j.2044-8317.1984.tb00802.x}.
+
+\leavevmode\hypertarget{ref-neale2016}{}%
+Neale, Michael C., Michael D. Hunter, Joshua N. Pritikin, Mahsa Zahery,
+Timothy R. Brick, Robert M. Kirkpatrick, Ryne Estabrook, Timothy C.
+Bates, Hermine H. Maes, and Steven M. Boker. 2016. ``OpenMx 2.0:
+Extended Structural Equation and Statistical Modeling.''
+\emph{Psychometrika} 81: 535--49.
+\url{https://doi.org/10.1007/s11336-014-9435-8}.
+
+\leavevmode\hypertarget{ref-tofighi2011}{}%
+Tofighi, Davood, and David P. MacKinnon. 2011. ``RMediation: An R
+Package for Mediation Analysis Confidence Intervals.'' \emph{Behavior
+Research Methods} 43: 692--700.
+\url{https://doi.org/10.3758/s13428-011-0076-x}.
+
+\leavevmode\hypertarget{ref-tofighi2016a}{}%
+---------. 2016. ``Monte Carlo Confidence Intervals for Complex
+Functions of Indirect Effects.'' \emph{Structural Equation Modeling: A
+Multidisciplinary Journal} 23: 194--205.
+\url{https://doi.org/10.1080/10705511.2015.1057284}.
+
+
+\end{document}

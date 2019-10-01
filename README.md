@@ -1,6 +1,6 @@
-# A Flexible Test of Mediation: Introducing the Model-based Constrained Optimization Procedure
+# Improved Inference in Mediation Analysis: Introducing the Model-based Constrained Optimization Procedure 
 
-This repository contains the supplemental materials for the manuscript entitled _A Flexible Test of Mediation: Introducing the Model-based Constrained Optimization Procedure_. Here is a list of the documents:
+This repository contains the supplemental materials for the manuscript entitled *Improved Inference in Mediation Analysis: Introducing the Model-based Constrained Optimization Procedure*. Here is a list of the documents:
 - `SuppMaterials-MBCO-rev1.Rmd`: The document explains the R code used in the manuscript. We discuss in detail the steps required to analyze our empirical example and re-produce the results.
 - `memory_study.csv`: The data file that contains the empirical data example. When using the data, please cite the relevant study by MacKinnon et al. (2018).
 
